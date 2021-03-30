@@ -1,0 +1,14 @@
+import pandas as pd
+import os
+
+files=filter(lambda x: "checkpoints not in x", os.listdir())
+
+file_prefix="raw"
+
+for file_name in files:
+	df= pandas.read_csv(file_name)
+	row_data=str(tuple(tuple(val) for val in df.values))
+
+	with open(f'prefix_{file_name[:-4]}.txt') as infile:
+		infile.write(row_data)
+
